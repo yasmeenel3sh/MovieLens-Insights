@@ -8,17 +8,17 @@ variable "project" {
 
 variable "region" {
     description = "region"
-    default = "europe-west1"
+    default = "us-central1"
 }
 
 variable "location" {
     description = "Project Location"
-    default = "EU"
+    default = "US"
 }
 
 variable "bq_dataset_name" {
     description = "BigQuery dataset name"
-    default = "MovieLens"
+    default = "movie_lens"
   
 }
 
