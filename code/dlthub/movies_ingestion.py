@@ -5,17 +5,16 @@ from dlt.sources.filesystem import filesystem, read_csv
 
 URL='../../data/'
 
-# @dlt.resource(name="ratings",write_disposition="replace")
-filesystem_pipe = filesystem(bucket_url=URL, file_glob="ratings.csv") | read_csv()
+filesystem_pipe = filesystem(bucket_url=URL, file_glob="movies.csv") | read_csv()
 
 filesystem_pipe.apply_hints(write_disposition="replace")
 
 
 pipeline = dlt.pipeline(
-    pipeline_name='ratings_data',
+    pipeline_name='movies_data',
     destination='bigquery', # <--- to run pipeline in production
     dataset_name="movie_lens", 
     dev_mode=False)
 
-info = pipeline.run(filesystem_pipe.with_name("ratings"))
+info = pipeline.run(filesystem_pipe.with_name("movies"))
 print(info)
