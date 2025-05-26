@@ -10,9 +10,12 @@ def load_csv_to_big_query(file_bucket_url,project_name,dataset_name,table_name):
 
     job_config = bigquery.LoadJobConfig(
         schema=[
+            bigquery.SchemaField("userId", "INT64"),
             bigquery.SchemaField("movieId", "INT64"),
-            bigquery.SchemaField("title", "STRING"),
-            bigquery.SchemaField("genres", "STRING")
+            bigquery.SchemaField("rating", "NUMERIC"),
+            bigquery.SchemaField("timestamp", "INT64"),
+           
+
         ],
         skip_leading_rows=1,
         # The source format defaults to CSV, so the line below is optional.
@@ -25,12 +28,10 @@ def load_csv_to_big_query(file_bucket_url,project_name,dataset_name,table_name):
     )  # Make an API request.
 
     load_job.result()  # Waits for the job to complete.
-
-    destination_table = client.get_table(table_id)  # Make an API request.
-    print("Loaded {} rows.".format(destination_table.num_rows))
-
+    print("Done.")
+  
 if __name__ == "__main__":
-    load_csv_to_big_query(file_bucket_url="gs://terraform-basics-458014-movielens/movie_lens/links.csv",
+    load_csv_to_big_query(file_bucket_url="gs://terraform-basics-458014-movielens/movie_lens/ratings.csv",
                           project_name="terraform-basics-458014",
                           dataset_name="movie_lens",
-                          table_name="movies")
+                          table_name="raw_ratings")
