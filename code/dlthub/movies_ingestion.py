@@ -1,26 +1,36 @@
-import dlt
-from dlt.sources.filesystem import filesystem, read_csv
+from google.cloud import bigquery
 
-#movielens 1M
+def load_csv_to_big_query(file_bucket_url,project_name,dataset_name,table_name):
 
-URL='../../data/'
+# Construct a BigQuery client object.
+    client = bigquery.Client()
 
-def load_csv_to_big_query(bucket_url, file_glob,pipeline_name,dataset_name,table_name):
+    # TODO(developer): Set table_id to the ID of the table to create.
+    table_id = f"{project_name}.{dataset_name}.{table_name}"
 
-    filesystem_pipe = filesystem(bucket_url=bucket_url, file_glob=file_glob) | read_csv()
+    job_config = bigquery.LoadJobConfig(
+        schema=[
+            bigquery.SchemaField("movieId", "INT64"),
+            bigquery.SchemaField("title", "STRING"),
+            bigquery.SchemaField("genres", "STRING")
+        ],
+        skip_leading_rows=1,
+        # The source format defaults to CSV, so the line below is optional.
+        source_format=bigquery.SourceFormat.CSV,
+    )
+    uri = file_bucket_url
 
-    filesystem_pipe.apply_hints(write_disposition="replace")
+    load_job = client.load_table_from_uri(
+        uri, table_id, job_config=job_config
+    )  # Make an API request.
 
+    load_job.result()  # Waits for the job to complete.
 
-    pipeline = dlt.pipeline(
-        pipeline_name=pipeline_name,
-        destination='bigquery', # <--- to run pipeline in production
-        dataset_name=dataset_name, 
-        dev_mode=False)
-
-    info = pipeline.run(filesystem_pipe.with_name(table_name))
-    print(f"File {file_glob} ingested to {table_name} in {dataset_name}")
+    destination_table = client.get_table(table_id)  # Make an API request.
+    print("Loaded {} rows.".format(destination_table.num_rows))
 
 if __name__ == "__main__":
-    load_csv_to_big_query(bucket_url=URL,file_glob="movies.csv",pipeline_name="movies_data",
-                          dataset_name="movie_lens",table_name="movies")
+    load_csv_to_big_query(file_bucket_url="gs://terraform-basics-458014-movielens/movie_lens/links.csv",
+                          project_name="terraform-basics-458014",
+                          dataset_name="movie_lens",
+                          table_name="movies")

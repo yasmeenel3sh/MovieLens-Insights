@@ -14,3 +14,6 @@ def upload_to_gcs(bucket_name, source_file_path, destination_blob_name):
     blob.upload_from_filename(source_file_path)
 
     print(f"File {source_file_path} uploaded to gs://{bucket_name}/{destination_blob_name}")
+
+if __name__ == "__main__":
+    upload_to_gcs("terraform-basics-458014-movielens", "../../data/movies.csv", "movie_lens/movies.csv")
