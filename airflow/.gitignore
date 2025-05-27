@@ -225,7 +225,7 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-# Terraform files
+# Terraform files 
 **/.terraform*
 *.tfstate*
 *.zip

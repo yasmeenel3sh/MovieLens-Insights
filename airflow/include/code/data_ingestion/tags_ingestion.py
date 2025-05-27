@@ -13,7 +13,7 @@ def load_csv_to_big_query(file_bucket_url,project_name,dataset_name,table_name):
         schema=[
             bigquery.SchemaField("userId", "INT64"),
             bigquery.SchemaField("movieId", "INT64"),
-            bigquery.SchemaField("rating", "StRING"),
+            bigquery.SchemaField("tag", "STRING"),
             bigquery.SchemaField("timestamp", "INT64"),
            
         ],
