@@ -1,0 +1,40 @@
+
+
+
+version: 2
+
+sources:
+  - name: movie_lens_data
+    database: terraform-basics-458014
+    schema: "{{ var('schema_name', 'movie_lens') }}"
+    tables:
+      - name: ratings_external
+        description: "External table for ratings records in GCS."
+        columns:
+          - name: userId
+            tests:
+              - not_null
+          - name: movieId
+            tests:
+              - not_null
+          - name: rating
+            tests:
+              - not_null
+          - name: timestamp
+            tests:
+              - not_null
+
+      - name: movies_external
+        description: "External table for movies data in GCS."
+        columns:
+          - name: movieId
+            tests:
+              - unique
+              - not_null
+          - name: title
+            tests:
+              - not_null
+          - name: genres
+            tests:
+              - not_null
+
