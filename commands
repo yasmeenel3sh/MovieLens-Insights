@@ -1,1 +1,7 @@
 export GOOGLE_APPLICATION_CREDENTIALS=~/.gc/my-creds.json
+
+
+#inside the airflow container set the path of the credentials
+export GOOGLE_APPLICATION_CREDENTIALS=/usr/local/airflow/include/gcp/service_account.json 
+
+airflow tasks test retail upload_csv_to_gcs 2025-05-26
