@@ -1,4 +1,4 @@
-movie_lens_dbt:  # Must match "profile" in dbt_project.yml
+movie_lens_dbt_pipeline:  # Must match "profile" in dbt_project.yml
   outputs:
     dev:
       dataset: movie_lens_dbt

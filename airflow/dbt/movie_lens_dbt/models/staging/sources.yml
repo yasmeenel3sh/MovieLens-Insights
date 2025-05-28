@@ -4,7 +4,7 @@
 version: 2
 
 sources:
-  - name: movie_lens_data
+  - name: staging
     database: terraform-basics-458014
     schema: "{{ var('schema_name', 'movie_lens') }}"
     tables:
@@ -17,6 +17,9 @@ sources:
           - name: movieId
             tests:
               - not_null
+              - relationships:
+                to: ref('movies_external')
+                field: movieId
           - name: rating
             tests:
               - not_null
