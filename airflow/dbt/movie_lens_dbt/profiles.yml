@@ -1,7 +1,7 @@
 movie_lens_dbt_pipeline:  # Must match "profile" in dbt_project.yml
   outputs:
     dev:
-      dataset: movie_lens_dbt
+      dataset: dev_movie_lens_dbt
       job_execution_timeout_seconds: 300
       job_retries: 1
       keyfile: /usr/local/airflow/include/gcp/service_account.json 

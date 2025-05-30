@@ -1,0 +1,50 @@
+
+
+
+version: 2
+# dbt run --vars '{"schema_name": "analytics_dataset"}'
+# so not environment variable
+sources:
+  - name: staging
+    database: terraform-basics-458014
+    schema: "{{ var('schema_name', 'movie_lens') }}"
+    tables:
+      - name: ratings_external
+      - name: movies_external
+models:
+    - name: stg_ratings 
+      description: >
+        Ratings data with correct datatypes, formats, and normalized names
+        loaded from external rating data.
+      columns:
+        - name: user_id
+          tests:
+            - not_null
+        - name: movie_id
+          tests:
+            - relationships:
+              to: ref('movies_external')
+              field: movieId
+        - name: rating
+          tests:
+            - not_null
+        - name: rating_timestamp
+          tests:
+            - not_null
+
+    - name: stg_movies
+      description: >
+        Movies data with correct datatypes, formats, and normalized names
+        loaded from external movies data.
+      columns:
+        - name: movie_id
+          tests:
+            - unique
+            - not_null
+        - name: title
+          tests:
+            - not_null
+        - name: genres
+          tests:
+            - not_null
+
