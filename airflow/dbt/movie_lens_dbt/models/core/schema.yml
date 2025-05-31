@@ -1,0 +1,16 @@
+version: 2
+
+models:
+    - name: dim_movies_genres
+      description: >
+        unnested movie genres 
+      columns:
+        - name: movie_id 
+          tests:
+            - not_null
+            - relationships:
+                to: ref('stg_movies')
+                field: movie_id
+        - name: genre
+          tests:
+            - not_null           

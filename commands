@@ -5,3 +5,6 @@ export GOOGLE_APPLICATION_CREDENTIALS=~/.gc/my-creds.json
 export GOOGLE_APPLICATION_CREDENTIALS=/usr/local/airflow/include/gcp/service_account.json 
 
 airflow tasks test retail upload_csv_to_gcs 2025-05-26
+
+
+ dbt run --profiles-dir /home/yasmeenel3sh/MovieLens-Insights/airflow/dbt/movie_lens_dbt

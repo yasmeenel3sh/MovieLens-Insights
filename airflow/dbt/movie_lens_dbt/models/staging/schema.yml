@@ -22,9 +22,10 @@ models:
             - not_null
         - name: movie_id
           tests:
+            - not_null
             - relationships:
-              to: ref('movies_external')
-              field: movieId
+                to: ref('stg_movies')
+                field: movie_id
         - name: rating
           tests:
             - not_null
