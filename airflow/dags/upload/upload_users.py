@@ -3,8 +3,8 @@ from pendulum import datetime
 from airflow.providers.google.cloud.transfers.local_to_gcs import LocalFilesystemToGCSOperator
 #we want to trigger it manually
 #we dont want to rerun all past non-triggered dag runs
-source='/usr/local/airflow/include/data/tags.csv'
-destination='airflow/tags.csv'
+source='/usr/local/airflow/include/data/users.csv'
+destination='airflow/users.csv'
 bucket='terraform-basics-458014-movielens'
 conn_id='gcp',
 
@@ -12,11 +12,11 @@ conn_id='gcp',
     start_date=datetime(2025,5,25),
     schedule=None, 
     catchup=False, 
-    tags=['tags_upload']
+    tags=['users_upload']
 )
-def upload_tags_to_gcs():
-    upload_rating_to_gcs= LocalFilesystemToGCSOperator(
-        task_id='upload_tags_to_gcs',
+def upload_users_to_gcs():
+    upload_users_to_gcs= LocalFilesystemToGCSOperator(
+        task_id='upload_users_to_gcs',
         src=source,
         dst=destination,
         bucket=bucket,
@@ -24,4 +24,4 @@ def upload_tags_to_gcs():
         mime_type='text/csv'
     )
 
-upload_tags_to_gcs()
+upload_users_to_gcs()

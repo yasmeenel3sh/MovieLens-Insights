@@ -15,7 +15,7 @@ conn_id='gcp',
     tags=['links_upload']
 )
 def upload_links_to_gcs():
-    upload_rating_to_gcs= LocalFilesystemToGCSOperator(
+    upload_links_to_gcs= LocalFilesystemToGCSOperator(
         task_id='upload_links_to_gcs',
         src=source,
         dst=destination,

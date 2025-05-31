@@ -11,6 +11,7 @@ sources:
     tables:
       - name: ratings_external
       - name: movies_external
+      - name: users_external
 models:
     - name: stg_ratings 
       description: >
@@ -20,6 +21,9 @@ models:
         - name: user_id
           tests:
             - not_null
+            - relationships:
+                to: ref('stg_users')
+                field: user_id
         - name: movie_id
           tests:
             - not_null
@@ -49,3 +53,26 @@ models:
           tests:
             - not_null
 
+    - name: stg_users
+      description: >
+        Users with correct datatypes, formats, and normalized names
+        loaded from external movies data.
+      columns:
+        - name: user_id
+          tests:
+            - unique
+            - not_null
+        - name: gender
+          tests:
+            - accepted_values:
+                values: "{{ var('gender_values') }}"
+                severity: warn
+        - name: age
+          tests:
+            - not_null
+        - name: occupation
+          tests:
+            - not_null
+        - name: zip_code
+          tests:
+            - not_null

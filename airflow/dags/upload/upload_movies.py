@@ -15,7 +15,7 @@ conn_id='gcp',
     tags=['movies_upload']
 )
 def upload_movies_to_gcs():
-    upload_rating_to_gcs= LocalFilesystemToGCSOperator(
+    upload_movies_to_gcs= LocalFilesystemToGCSOperator(
         task_id='upload_movies_to_gcs',
         src=source,
         dst=destination,
