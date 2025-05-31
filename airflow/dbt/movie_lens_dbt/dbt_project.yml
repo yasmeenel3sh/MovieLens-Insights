@@ -39,3 +39,15 @@ models:
     #   +materialized: view
 vars:
   gender_values: ["M","F"]
+
+
+seeds: 
+    movie_lens_dbt:
+        us_zip_codes:
+            +quote_columns: true 
+            +column_types:
+                zip_code: integer
+                city: string 
+                state_id: string 
+                state_name: string
+                county_name: string

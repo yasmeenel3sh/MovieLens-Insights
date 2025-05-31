@@ -1,0 +1,7 @@
+version: 2
+
+seeds: 
+  - name: us_zip_codes
+    description: >
+      File that contains us zip codes mapping to states and counties from:
+      https://simplemaps.com/data/us-zips

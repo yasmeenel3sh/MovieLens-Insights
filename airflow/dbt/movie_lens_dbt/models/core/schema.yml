@@ -1,6 +1,9 @@
 version: 2
 
 models:
+    - name: dim_zip_code_locations
+      description: >
+       Us zip_codes matched with their state, city, and county.
     - name: dim_movies_genres
       description: >
         unnested movie genres 
