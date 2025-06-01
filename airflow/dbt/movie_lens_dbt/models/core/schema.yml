@@ -1,9 +1,6 @@
 version: 2
 
 models:
-    - name: dim_zip_code_locations
-      description: >
-       Us zip_codes matched with their state, city, and county.
     - name: dim_movies_genres
       description: >
         unnested movie genres 
@@ -16,4 +13,40 @@ models:
                 field: movie_id
         - name: genre
           tests:
-            - not_null           
+            - not_null    
+                   
+    - name: dim_users
+      description: >
+        Dimension table for users, enriched with city, state, and county information from zip codes.
+      columns:
+        - name: user_id
+          description: Primary key of the user.
+          tests:
+            - not_null
+            - unique
+        - name: gender
+          description: Gender of the user.
+
+        - name: age
+          description: Age bucket of the user.
+
+        - name: occupation
+          description: Occupation ID of the user.
+
+        - name: zip_code
+          description: ZIP code provided by the user.
+
+        - name: city
+          description: City mapped from ZIP code.
+          tests:
+            - accepted_values:
+                values: ['New York', 'Los Angeles', 'Chicago']  # optional
+
+        - name: state_id
+          description: State code from ZIP code.
+
+        - name: state_name
+          description: Full state name.
+
+        - name: county_name
+          description: County from ZIP code.
