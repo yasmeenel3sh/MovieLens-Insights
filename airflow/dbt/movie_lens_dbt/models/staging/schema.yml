@@ -32,7 +32,10 @@ models:
                 field: movie_id
         - name: rating
           tests:
+            - dbt_utils.expression_is_true:
+                expression: "rating >= 1 AND rating <= 5"
             - not_null
+ 
         - name: rating_timestamp
           tests:
             - not_null

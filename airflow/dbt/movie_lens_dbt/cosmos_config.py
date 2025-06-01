@@ -2,7 +2,7 @@ from cosmos.config import ProfileConfig, ProjectConfig
 from pathlib import Path
 
 DBT_CONFIG = ProfileConfig(
-    profile_name='movie_lens_dbt_pipeline',
+    profile_name='movie_lens_dbt_pipeline_airflow',
     # target_name='prod',
     target_name='dev',
     profiles_yml_filepath=Path('/usr/local/airflow/dbt/movie_lens_dbt/profiles.yml')

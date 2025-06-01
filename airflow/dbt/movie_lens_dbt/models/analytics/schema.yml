@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: movie_leaderboard
+    description: >
+      Leaderboard of top-rated movies with at least 50 ratings, ordered by average rating.
+    columns:
+      - name: movie_id
+        tests: 
+         - not_null 
+      - name: avg_rating
+        tests: 
+         - not_null
+      - name: rating_count
+        tests: 
+         - not_null
+
+  - name: movie_leaderboard_by_genre
+    description: >
+      Ranks movies within each genre by average rating and rating count,
+      showing only movies with at least 50 ratings.
+    columns:
+      - name: movie_id
+        description: ID of the movie.
+        tests:
+          - not_null
+
+      - name: title
+        description: Title of the movie.
+
+      - name: release_year
+        description: Release year of the movie.
+
+      - name: genre
+        description: Genre associated with the movie.
+
+      - name: rating_count
+        description: Total number of ratings the movie received.
+        tests:
+          - not_null
+
+      - name: avg_rating
+        description: Average rating of the movie.
+        tests:
+          - not_null
+
+      - name: genre_rank
+        description: Rank of the movie within its genre, based on average rating and rating count.

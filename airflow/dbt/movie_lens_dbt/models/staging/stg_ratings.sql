@@ -12,7 +12,7 @@ select
    --identifiers
    {{dbt.safe_cast("userId",api.Column.translate_type("integer"))}} as user_id,
    {{dbt.safe_cast("movieId", api.Column.translate_type("integer"))}} as movie_id,
-   {{dbt.safe_cast("rating",api.Column.translate_type("numeric"))}} as rating,
+   {{dbt.safe_cast("rating",api.Column.translate_type("integer"))}} as rating,
    TIMESTAMP_SECONDS({{ dbt.safe_cast('timestamp', api.Column.translate_type('integer')) }}) as rating_timestamp
 from ratings_data
 

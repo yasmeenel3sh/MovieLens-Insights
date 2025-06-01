@@ -38,9 +38,7 @@ models:
 
         - name: city
           description: City mapped from ZIP code.
-          tests:
-            - accepted_values:
-                values: ['New York', 'Los Angeles', 'Chicago']  # optional
+          
 
         - name: state_id
           description: State code from ZIP code.
@@ -50,3 +48,100 @@ models:
 
         - name: county_name
           description: County from ZIP code.
+
+    - name: fact_ratings
+      description: >
+        Fact table for user movie ratings, enriched with user demographics and movie metadata.
+      columns:
+        - name: user_id
+          description: Foreign key to dim_users
+          tests:
+            - not_null
+            - relationships:
+                to: ref('dim_users')
+                field: user_id
+
+        - name: age
+          description: Age of the user at the time of rating
+          tests: 
+            - not_null
+
+        - name: gender
+          description: Gender of the user
+          tests:
+            - not_null
+            - accepted_values:
+                values: "{{ var('gender_values') }}"
+                severity: warn
+        - name: occupation
+          description: Occupation code of the user
+          tests:
+            - not_null
+
+        - name: zip_code
+          description: Zip code of the user
+          tests:
+            - not_null
+
+        - name: state_name
+          description: U.S. state derived from user's zip code
+
+        - name: movie_id
+          description: Foreign key to stg_movies
+          tests:
+            - not_null
+            - relationships:
+                to: ref('stg_movies')
+                field: movie_id
+
+        - name: title
+          description: Movie title with release year removed
+          tests:
+            - not_null
+
+        - name: release_year
+          description: Release year of the movie
+
+        - name: rating
+          description: Rating given by the user to the movie (1-5)
+          tests:
+            - not_null
+
+        - name: rating_timestamp
+          description: Timestamp when the rating was made
+        - name: year
+          description: year of rating
+        - name: month
+          description: month of rating
+
+    - name: dim_time
+      description: >
+        Dimension table that breaks down unique rating timestamps into various date parts.
+      columns:
+        - name: rating_timestamp
+          description: Original timestamp from ratings data.
+          tests:
+            - not_null
+
+        - name: full_datetime
+          description: Full datetime value of the rating timestamp.
+          tests:
+            - not_null
+
+        - name: year
+          description: Year extracted from the timestamp.
+
+        - name: month
+          description: Month extracted from the timestamp (1–12).
+
+        - name: day
+          description: Day of the month extracted from the timestamp.
+
+        - name: day_of_week
+          description: Day of the week extracted from the timestamp (1 = Sunday, 7 = Saturday).
+
+        - name: year_month
+          description: Year and month formatted as 'YYYY-MM'.
+
+        - name: full_date
+          description: Full date formatted as 'YYYY-MM-DD'.
