@@ -7,7 +7,7 @@
 with ratings_data as (
     select *
     from {{source('staging', 'ratings_external')}}
-)
+) 
 select 
    --identifiers
    {{dbt.safe_cast("userId",api.Column.translate_type("integer"))}} as user_id,

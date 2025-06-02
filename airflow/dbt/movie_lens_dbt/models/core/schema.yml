@@ -118,11 +118,6 @@ models:
       description: >
         Dimension table that breaks down unique rating timestamps into various date parts.
       columns:
-        - name: rating_timestamp
-          description: Original timestamp from ratings data.
-          tests:
-            - not_null
-
         - name: full_datetime
           description: Full datetime value of the rating timestamp.
           tests:

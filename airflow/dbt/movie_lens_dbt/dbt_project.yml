@@ -37,6 +37,10 @@ models:
     # Config indicated by + and applies to all files under models/example/
     # example:
     #   +materialized: view
+      core:
+          +materialized: view
+      analytics:
+          +materialized: view
 vars:
   gender_values: ["M","F"]
 

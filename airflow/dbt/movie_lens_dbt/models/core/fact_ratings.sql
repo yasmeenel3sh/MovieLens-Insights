@@ -30,7 +30,7 @@ movies as (
 
 time_dim as (
     select
-        rating_timestamp,
+        full_datetime,
         year,
         month
     from {{ ref('dim_time') }}
@@ -49,15 +49,15 @@ select
     m.release_year,
 
     r.rating,
-    r.rating_timestamp
-
+    r.rating_timestamp,
+    
     t.year,
     t.month
 
 from ratings r
 left join users u on r.user_id = u.user_id
 left join movies m on r.movie_id = m.movie_id
-left join time_dim t on r.rating_timestamp = t.rating_timestamp
+left join time_dim t on r.rating_timestamp = t.full_datetime
 
 {% if var('is_test_run', default=true) %}
 
