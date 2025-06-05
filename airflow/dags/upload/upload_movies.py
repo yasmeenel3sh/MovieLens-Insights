@@ -14,7 +14,7 @@ conn_id='gcp',
     catchup=False, 
     tags=['movies_upload']
 )
-def upload_movies_to_gcs():
+def upload_movies():
     upload_movies_to_gcs= LocalFilesystemToGCSOperator(
         task_id='upload_movies_to_gcs',
         src=source,
@@ -24,4 +24,4 @@ def upload_movies_to_gcs():
         mime_type='text/csv'
     )
 
-upload_movies_to_gcs()
+upload_movies()

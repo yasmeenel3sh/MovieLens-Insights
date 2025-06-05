@@ -6,3 +6,23 @@ logs/
 .venv
 airflow.db
 airflow.cfg
+
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore datasets, logs, or local files that are large and unnecessary for the image
+data/
+logs/
+*.csv
+
+# Ignore git directory
+.git/
+
+# Ignore virtual environment folder if you have one in your context folder
+dbt_venv/
+
+# Ignore IDE/editor configs
+.vscode/
+.idea/

@@ -27,8 +27,8 @@ def dbt_run():
         render_config= RenderConfig(
             load_method= LoadMode.DBT_LS,
             select=['path:models'],
-            dbt_executable_path= "/usr/local/airflow/dbt_venv/bin/dbt"
-        )
+            dbt_executable_path= "/usr/local/airflow/dbt_venv/bin/dbt")
+
     )
     # return
     #     transform = BashOperator(

@@ -14,8 +14,8 @@ conn_id='gcp',
     catchup=False, 
     tags=['ratings_upload']
 )
-def upload_ratings_to_gcs():
-    upload_rating_to_gcs= LocalFilesystemToGCSOperator(
+def upload_ratings():
+    upload_ratings_to_gcs= LocalFilesystemToGCSOperator(
         task_id='upload_ratings_to_gcs',
         src=source,
         dst=destination,
@@ -24,4 +24,4 @@ def upload_ratings_to_gcs():
         mime_type='text/csv'
     )
 
-upload_ratings_to_gcs()
+upload_ratings()

@@ -14,7 +14,7 @@ conn_id='gcp',
     catchup=False, 
     tags=['users_upload']
 )
-def upload_users_to_gcs():
+def upload_users():
     upload_users_to_gcs= LocalFilesystemToGCSOperator(
         task_id='upload_users_to_gcs',
         src=source,
@@ -24,4 +24,4 @@ def upload_users_to_gcs():
         mime_type='text/csv'
     )
 
-upload_users_to_gcs()
+upload_users()
