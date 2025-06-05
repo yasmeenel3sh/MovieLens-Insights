@@ -10,3 +10,5 @@ airflow tasks test retail upload_csv_to_gcs 2025-05-26
  dbt run --profiles-dir /home/yasmeenel3sh/MovieLens-Insights/airflow/dbt/movie_lens_dbt
 
   dbt run --profiles-dir /home/yasmeenel3sh/MovieLens-Insights/airflow/dbt/movie_lens_dbt --vars '{'is_test_run': 'false'}'
+
+  airflow tasks list MovieLens_1M_pipeline

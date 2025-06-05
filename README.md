@@ -38,6 +38,10 @@ The following diagram illustrates the architecture of the ELT pipeline, highligh
 
 * **Terraform** is utilized to **provision the necessary infrastructure** on Google Cloud Platform. This approach ensures that the environment is consistent, reproducible, and scalable, adhering to modern DevOps practices.
 
+## Pipeline graph
+
+![MovieLens_Pipeline_graph](https://github.com/yasmeenel3sh/MovieLens-Insights/blob/main/ImagesMovieLens_1M_pipeline-graph.png)
+
 ## [The Dashboard]
 
 ![Dashboard](https://github.com/yasmeenel3sh/MovieLens-Insights/blob/main/Images/Movielens_Insights.png)

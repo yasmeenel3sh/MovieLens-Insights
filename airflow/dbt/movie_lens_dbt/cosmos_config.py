@@ -1,6 +1,8 @@
 from cosmos.config import ProfileConfig, ProjectConfig
 from pathlib import Path
 
+#The target_name you pass to ProfileConfig overrides whatever is written in the target: field of profiles.yml.
+
 DBT_CONFIG = ProfileConfig(
     profile_name='movie_lens_dbt_pipeline_airflow',
     # target_name='prod',

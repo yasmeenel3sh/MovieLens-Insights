@@ -39,6 +39,11 @@ with DAG(
         trigger_dag_id="create_external_users_table_in_bq"
     )
 
+    trigger_dag_dbt_test= TriggerDagRunOperator(
+        task_id="trigger_dbt_test",
+        trigger_dag_id="dbt_test"
+    )
+
     trigger_dag_dbt_run = TriggerDagRunOperator(
         task_id="trigger_dbt_run",
         trigger_dag_id="dbt_run"
@@ -48,4 +53,4 @@ with DAG(
     trigger_dag_upload_ratings >> trigger_dag_ext_ratings
     trigger_dag_upload_users >> trigger_dag_ext_users
 
-    [trigger_dag_ext_movies, trigger_dag_ext_ratings,trigger_dag_ext_users] >> trigger_dag_dbt_run
+    [trigger_dag_ext_movies, trigger_dag_ext_ratings,trigger_dag_ext_users] >> trigger_dag_dbt_test >> trigger_dag_dbt_run
