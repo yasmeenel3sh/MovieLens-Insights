@@ -40,7 +40,7 @@ The following diagram illustrates the architecture of the ELT pipeline, highligh
 
 ## Pipeline graph
 
-![MovieLens_Pipeline_graph](https://github.com/yasmeenel3sh/MovieLens-Insights/blob/main/ImagesMovieLens_1M_pipeline-graph.png)
+![MovieLens_Pipeline_graph](https://github.com/yasmeenel3sh/MovieLens-Insights/blob/main/Images/MovieLens_1M_pipeline-graph.png)
 
 ## [The Dashboard]
 
