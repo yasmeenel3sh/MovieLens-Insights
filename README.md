@@ -40,4 +40,4 @@ The following diagram illustrates the architecture of the ELT pipeline, highligh
 
 ## [The Dashboard]
 
-![Dashboard](https://github.com/yasmeenel3sh/MovieLens-Insights/blob/main/Images/Movielens_Insights.pdf)
+![Dashboard](https://github.com/yasmeenel3sh/MovieLens-Insights/blob/main/Images/Movielens_Insights.png)
