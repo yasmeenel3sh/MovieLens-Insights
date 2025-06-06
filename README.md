@@ -23,7 +23,27 @@ The following diagram illustrates the architecture of the ELT pipeline, highligh
 
 ### 3. Data Transformation
 
-* **dbt (data build tool)** is employed to apply a series of **transformations** to the data within BigQuery. This stage cleans, structures, and aggregates the raw data into a format suitable for analysis.
+* **dbt (data build tool)** is employed to apply a series of **transformations** to the data within BigQuery. 
+
+The dbt transformation layer is organized into three logical layers: **staging**, **core**, and **analytics**, each serving a distinct purpose in preparing and enriching the MovieLens dataset for analysis.
+
+#### 📦 Staging Models
+
+* Clean and standardize raw data from external tables (`ratings_external`, `movies_external`, `users_external`).
+* Ensure correct datatypes, formats, and normalized naming conventions.
+* Apply essential tests such as uniqueness, non-null constraints, and referential integrity.
+
+#### 🧠 Core Models
+
+* Build dimensional tables like `dim_movies_genres`, `dim_users`, and `dim_time`.
+* Create fact tables such as `fact_ratings` that integrate user demographics, movie metadata, and rating data.
+* Enrich user data with geographic information (city, state, county) by joining with ZIP code mappings from a seed file.
+* Implement data quality tests to ensure reliability and consistency.
+
+#### 📊 Analytics Models
+
+* **`movie_leaderboard`**: Provides a leaderboard of top-rated movies with at least 50 ratings, ordered by average rating, to identify the most popular and critically acclaimed movies overall.
+* **`movie_leaderboard_by_genre`**: Ranks movies within each genre by average rating and rating count, filtering to movies with at least 50 ratings. Supports genre-specific insights with rank ordering per genre.
 
 ### 4. Workflow Orchestration
 
@@ -36,7 +56,7 @@ The following diagram illustrates the architecture of the ELT pipeline, highligh
 
 ### 6. Infrastructure as Code (IaC)
 
-* **Terraform** is utilized to **provision the necessary infrastructure** on Google Cloud Platform. This approach ensures that the environment is consistent, reproducible, and scalable, adhering to modern DevOps practices.
+* **Terraform** is utilized to **provision the necessary infrastructure** on Google Cloud Platform. 
 
 ## Pipeline graph
 
