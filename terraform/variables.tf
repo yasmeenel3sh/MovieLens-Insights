@@ -22,6 +22,12 @@ variable "bq_dataset_name" {
   
 }
 
+variable "dbt_dev_dataset_name" {
+    description = "dbt dev dataset name"
+    default = "dev_movie_lens_dbt"
+  
+}
+
 variable "gcs_storage_class" {
     description = "Bucket Storage Class"
     default = "STANDARD"  

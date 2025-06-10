@@ -37,7 +37,14 @@ resource "google_storage_bucket" "demo-bucket" {
   }
 }
 
-resource "google_bigquery_dataset" "demo_dataset" {
+resource "google_bigquery_dataset" "Movielens_dataset" {
   dataset_id = var.bq_dataset_name
   location = var.location
+  delete_contents_on_destroy = true 
+}
+
+resource "google_bigquery_dataset" "dev_dbt_dataset" {
+  dataset_id = var.dbt_dev_dataset_name
+  location = var.location
+  delete_contents_on_destroy = true 
 }

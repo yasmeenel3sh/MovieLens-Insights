@@ -15,11 +15,11 @@ GCP_CONN_ID = Variable.get("GCP_CONN_ID", default_var="gcp")
     catchup=False,
     tags=["dbt_test"],
 )
-def dbt_test():
+def dbt_test_sources():
     dbt_test_raw = BashOperator(
             task_id="dbt_test_raw",
-            bash_command="source /usr/local/airflow/dbt_venv/bin/activate && dbt test --select source:*",
+            bash_command="source /usr/local/airflow/dbt_venv/bin/activate && dbt deps && dbt test --select source:*",
             cwd="/usr/local/airflow/dbt/movie_lens_dbt"
         )
 
-dbt_test()
+dbt_test_sources()

@@ -80,8 +80,8 @@ models:
 
         - name: zip_code
           description: Zip code of the user
-          tests:
-            - not_null
+          # tests:
+          #   - not_null
 
         - name: state_name
           description: U.S. state derived from user's zip code

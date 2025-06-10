@@ -16,6 +16,7 @@ select
    {{ dbt.safe_cast("Age","STRING") }} as age,
    {{ dbt.safe_cast("Occupation","STRING") }} as occupation,
    {{ dbt.safe_cast("Zip_code",api.Column.translate_type("integer")) }} as zip_code
+--    where zip_code is not null
 
 from users_data
 

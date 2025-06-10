@@ -6,7 +6,7 @@ from airflow.providers.google.cloud.transfers.local_to_gcs import LocalFilesyste
 source='/usr/local/airflow/include/data/ratings.csv'
 destination='airflow/ratings.csv'
 bucket='terraform-basics-458014-movielens'
-conn_id='gcp',
+conn_id='gcp'
 
 @dag(
     start_date=datetime(2025,5,25),

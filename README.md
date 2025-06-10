@@ -8,6 +8,7 @@ This project showcases robust data engineering skills by building a comprehensiv
 
 The following diagram illustrates the architecture of the ELT pipeline, highlighting the flow of data and the tools used at each stage:
 
+![Architecture](https://github.com/yasmeenel3sh/MovieLens-Insights/blob/main/Images/pipeline.png)
 
 ---
 
